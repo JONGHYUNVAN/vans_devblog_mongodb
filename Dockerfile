@@ -26,5 +26,6 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD mongosh --eval "db.adminCommand('ping')" || exit 1
 
 # MongoDB 실행 (모든 IP에서 접속 허용)
-CMD ["mongod", "--bind_ip_all"]
+# 낮은 메모리 환경을 위한 설정
+CMD ["mongod", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25"]
 
