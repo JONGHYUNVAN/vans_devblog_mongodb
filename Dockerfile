@@ -28,7 +28,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD mongosh --eval "db.adminCommand('ping')" || exit 1
 
 # 커스텀 엔트리포인트 사용 (권한 설정 후 MongoDB 실행)
-# 낮은 메모리 환경을 위한 설정 + journal 비활성화 (권한 문제 회피)
+# 낮은 메모리 환경을 위한 설정
 ENTRYPOINT ["/usr/local/bin/custom-entrypoint.sh"]
-CMD ["mongod", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25", "--nojournal"]
+CMD ["mongod", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25"]
 
