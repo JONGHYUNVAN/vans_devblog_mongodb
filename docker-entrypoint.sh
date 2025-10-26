@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e
 
-# 권한 문제 해결: root로 디렉토리 생성 및 권한 설정
+# MongoDB 데이터 디렉토리 생성 (권한 변경 없이)
 echo "Setting up MongoDB data directories..."
 mkdir -p /data/db /data/configdb
-chown -R mongodb:mongodb /data/db /data/configdb
-chmod -R 755 /data/db /data/configdb
+
+# Journal을 tmpfs에 생성 (권한 문제 회피)
+mkdir -p /tmp/mongodb-journal
+chown -R mongodb:mongodb /tmp/mongodb-journal || true
 
 # MongoDB 공식 entrypoint 실행
 exec docker-entrypoint.sh "$@"
