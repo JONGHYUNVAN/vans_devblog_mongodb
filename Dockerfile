@@ -2,7 +2,7 @@
 FROM mongo:8.0
 
 # 메타데이터
-LABEL maintainer="VNAS DevBlog"
+LABEL maintainer="VANS DevBlog"
 LABEL description="MongoDB 8.0 for Cloudtype.io deployment"
 
 # 환경 변수 설정 (Cloudtype에서 덮어쓸 수 있음)
