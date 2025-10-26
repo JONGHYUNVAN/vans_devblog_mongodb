@@ -1,0 +1,10 @@
+name: vans-devblog-mongodb
+type: dockerfile
+volumes:
+  - name: mongodb-data
+    path: /data/db
+    size: 2Gi
+  - name: mongodb-config
+    path: /data/configdb
+    size: 100Mi
+
