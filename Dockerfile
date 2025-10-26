@@ -13,6 +13,11 @@ ENV MONGO_INITDB_DATABASE=devblog
 # 초기화 스크립트 복사
 COPY init-mongo.js /docker-entrypoint-initdb.d/
 
+# MongoDB 데이터 디렉토리 생성 및 권한 설정
+RUN mkdir -p /data/db /data/configdb && \
+    chown -R mongodb:mongodb /data/db /data/configdb && \
+    chmod -R 755 /data/db /data/configdb
+
 # MongoDB 데이터 디렉토리 볼륨 설정
 # Cloudtype에서 영구 디스크로 마운트해야 함
 VOLUME /data/db
